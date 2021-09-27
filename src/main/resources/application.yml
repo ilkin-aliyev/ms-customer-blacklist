@@ -1,0 +1,37 @@
+server:
+  port: 8081
+
+spring:
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    url: jdbc:postgresql://localhost:5432/customer_blacklist
+    username: postgres
+    password: root
+  jpa:
+    properties:
+      hibernate:
+        temp:
+          use_jdbc_metadata_defaults: false
+    database-platform: org.hibernate.dialect.PostgreSQL10Dialect
+  jackson:
+    default-property-inclusion: NON_NULL
+  liquibase:
+    change-log: classpath:liquibase/changelog-master.yml
+  rabbitmq:
+    host: localhost
+    username: guest
+    password: guest
+    listener:
+      simple:
+        retry:
+          enabled: true
+          initial-interval: 3s
+          max-attempts: 5
+          max-interval: 5s
+          multiplier: 1
+        missing-queues-fatal: false
+
+rabbitmq:
+  queue:
+    blacklist: BLACKLIST_Q
+    blacklist-dlq: BLACKLIST_DLQ
