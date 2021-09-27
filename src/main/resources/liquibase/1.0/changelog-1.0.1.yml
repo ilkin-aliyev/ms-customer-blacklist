@@ -1,0 +1,25 @@
+databaseChangeLog:
+  - changeSet:
+      id: Create table for scheduler
+      author: Ilkin Aliyev
+      changes:
+        - createTable:
+            tableName: shedlock
+            columns:
+              - column:
+                  name: name
+                  type: varchar(64)
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: lock_until
+                  type: timestamp
+              - column:
+                  name: locked_at
+                  type: timestamp
+              - column:
+                  name: locked_by
+                  type: varchar(256)
+                  constraints:
+                    nullable: false
