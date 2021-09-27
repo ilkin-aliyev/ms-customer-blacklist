@@ -1,0 +1,55 @@
+databaseChangeLog:
+  - changeSet:
+      id: Create blacklist table
+      author: Ilkin Aliyev
+      changes:
+        - createTable:
+            tableName: blacklist
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: cif
+                  type: varchar(8)
+                  remarks: cif of customer
+                  constraints:
+                    nullable: false
+              - column:
+                  name: risk_level
+                  type: varchar(16)
+                  remarks: risk level of blacklist
+                  constraints:
+                    nullable: false
+              - column:
+                  name: status
+                  type: varchar(16)
+                  remarks: status of blacklist
+                  constraints:
+                    nullable: false
+              - column:
+                  name: expire_at
+                  type: timestamp
+                  remarks: When blacklist expired
+                  constraints:
+                    nullable: false
+              - column:
+                  name: created_at
+                  type: timestamp
+                  defaultValue: now()
+                  constraints:
+                    nullable: false
+                  remarks: When the record created
+              - column:
+                  name: updated_at
+                  type: timestamp
+                  defaultValue: now()
+                  constraints:
+                    nullable: false
+                  remarks: Last update of record
+
+            remarks: Table to store information customers in blacklist
