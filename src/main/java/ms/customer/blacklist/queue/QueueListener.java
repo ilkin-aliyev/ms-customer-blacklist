@@ -12,7 +12,6 @@ import org.springframework.stereotype.Component;
 @Slf4j
 @RequiredArgsConstructor
 public class QueueListener {
-
     private final ObjectMapper objectMapper;
     private final BlacklistService blacklistService;
 
